@@ -1,0 +1,20 @@
+{
+  "posts": 0,
+  "users": 0,
+  "gallery": [
+    {
+      "media_url": "http://www.somehost.com/pic.jpg",
+      "screen_name": "johndoe",
+      "url": "http://www.somehost.com/tweet",
+      "created_at": "April-15-2019",
+      "profile_image_url": "http://www.somehost.com/profile.jpg"
+    },
+    {
+      "media_url": "http://www.somehost.com/pic.jpg",
+      "screen_name": "johndoe",
+      "url": "http://www.somehost.com/tweet",
+      "created_at": "April-15-2019",
+      "profile_image_url": "http://www.somehost.com/profile.jpg"
+    }
+  ]
+}
