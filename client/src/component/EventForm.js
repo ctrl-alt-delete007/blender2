@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class EventForm extends Component {
   constructor(props) {
@@ -7,6 +8,8 @@ class EventForm extends Component {
       name: "",
       hashtag: ""
     };
+
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   changeHandler = e => {
@@ -15,7 +18,7 @@ class EventForm extends Component {
     });
   };
 
-  clickHandler = () => {
+  async clickHandler() {
     const opts = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,10 +28,12 @@ class EventForm extends Component {
       })
     };
 
-    fetch("/api/events", opts)
+    await fetch("/api/events", opts)
       .then(res => res.json())
       .then(event => this.props.addEventsHandler(event));
-  };
+
+    this.props.history.push("/gallery");
+  }
 
   render() {
     return (
@@ -57,4 +62,4 @@ class EventForm extends Component {
   }
 }
 
-export default EventForm;
+export default withRouter(EventForm);

@@ -1,4 +1,7 @@
 {
+  "id": 1,
+  "name": "Event Name",
+  "hashtag": "hashtag_name",
   "posts": 0,
   "users": 0,
   "gallery": [

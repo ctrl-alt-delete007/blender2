@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import EventForm from "./component/EventForm";
+import Gallery from "./container/Gallery";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      events: []
+      events: [],
+      selectedEvent: { name: "", hashtag: "" }
     };
   }
 
@@ -19,10 +21,26 @@ class App extends Component {
       });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedEvent.name === "" && this.state.events.length > 0) {
+      this.setState({ selectedEvent: this.state.events[0] });
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
+          <Route
+            path="/gallery"
+            render={() => (
+              <Gallery
+                selectedEvent={this.state.selectedEvent}
+                events={this.state.events}
+                selectedValueHandler={this.selectedValueHandler}
+              />
+            )}
+          />
           <Route
             path="/"
             render={() => (
@@ -34,11 +52,16 @@ class App extends Component {
     );
   }
 
+  selectedValueHandler = id => {
+    const selectedEvent = this.state.events.find(event => event.id === id);
+    this.setState({ selectedEvent });
+  };
+
   addEventsHandler = eventInfo => {
     const { events } = this.state;
     events.unshift(eventInfo);
-    this.setState({ events });
+    this.setState({ events, selectedEvent: eventInfo });
   };
 }
 
-export default App;
+export default withRouter(App);
