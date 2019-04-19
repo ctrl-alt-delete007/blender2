@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import GalleryHeader from "../component/GalleryHeader";
+import Cards from "./Cards";
 
 const Gallery = props => {
-  console.log(props.selectedEvent);
-
   const searchHandler = q => {
     console.log(q);
   };
@@ -16,6 +15,7 @@ const Gallery = props => {
         searchHandler={searchHandler}
         selectedValueHandler={props.selectedValueHandler}
       />
+      <Cards gallery={props.selectedEvent.gallery} />
     </div>
   );
 };
