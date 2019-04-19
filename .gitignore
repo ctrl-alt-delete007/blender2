@@ -2,3 +2,4 @@ node_modules
 create-twitter-bearer-token.js
 .env
 replacement.txt
+..bfg-report
