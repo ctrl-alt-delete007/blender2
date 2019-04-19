@@ -14,7 +14,7 @@ const opts = {
   app_only_auth: true
 };
 
-async function getTweets(hashtag) {
+async function getTweets(req, resp) {
   const client = new Twit(opts);
 
   let resultsExist, maxid, isEqualsToLocation, andLocation;
@@ -23,7 +23,7 @@ async function getTweets(hashtag) {
 
   do {
     let tweets = await client.get("search/tweets", {
-      q: "#" + hashtag,
+      q: "#" + req.body.hashtag,
       count: 100
     });
 
@@ -42,6 +42,7 @@ async function getTweets(hashtag) {
     counter += 1;
   } while (resultsExist !== undefined && counter < 3);
 
+  console.log(result);
   return result;
 }
 

@@ -13,8 +13,6 @@ app.get("/api/events", db.getEvents);
 app.post("/api/events", db.createEvent);
 
 // need to revise the below route to GET
-app.post("/api/hashtag", (request, response) => {
-  twitter.getTweets(request.body.hashtag);
-});
+app.post("/api/hashtag", twitter.getTweets);
 
 app.listen(port, () => console.log(`Server started on port: ${port}`));

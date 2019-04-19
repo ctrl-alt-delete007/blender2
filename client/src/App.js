@@ -25,6 +25,10 @@ class App extends Component {
     if (prevState.selectedEvent.name === "" && this.state.events.length > 0) {
       this.setState({ selectedEvent: this.state.events[0] });
     }
+
+    if (prevState.selectedEvent.id !== this.state.selectedEvent.id) {
+      this.fetchSelectedEvent(this.state.selectedEvent);
+    }
   }
 
   render() {
@@ -63,7 +67,16 @@ class App extends Component {
     this.setState({ events, selectedEvent: eventInfo });
   };
 
-  fetchSelectedEvent = eventInfo => {};
+  fetchSelectedEvent = eventInfo => {
+    //   const opts = {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(eventInfo)
+    //   };
+    //   fetch("/api/hashtag", opts)
+    //     .then(res => res.json())
+    //     .then(event => this.setState({ selectedEvent: event }));
+  };
 }
 
 export default withRouter(App);
