@@ -10,13 +10,19 @@ class GalleryHeader extends Component {
   }
 
   render() {
-    const selectOptions = this.props.events.map((event, i) => (
+    const events = this.props.events || [{ name: "" }];
+    const selectOptions = events.map((event, i) => (
       <option key={i} value={event.id}>
         {event.name}
       </option>
     ));
 
-    const { name, hashtag, posts, users } = this.props.selectedEvent;
+    const { name, hashtag, posts, users } = this.props.selectedEvent || {
+      name: "",
+      hashtag: "",
+      posts: 0,
+      users: 0
+    };
 
     return (
       <React.Fragment>

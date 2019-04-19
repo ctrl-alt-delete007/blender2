@@ -20,14 +20,13 @@ const createEvent = (request, response) => {
   const { name, hashtag } = request.body;
 
   pool.query(
-    "INSERT INTO events (name, hashtag) VALUES ($1, $2)",
+    "INSERT INTO events (name, hashtag) VALUES ($1, $2) RETURNING id",
     [name, hashtag],
     (error, result) => {
       if (error) {
         throw error;
       }
-
-      response.status(201).send({ name, hashtag });
+      response.status(201).send({ id: result.rows[0].id, name, hashtag });
     }
   );
 };
