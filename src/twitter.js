@@ -16,6 +16,8 @@ const opts = {
 
 async function getTweets(req, resp) {
   const client = new Twit(opts);
+  const event = {};
+  const users = [];
 
   let resultsExist, maxid, isEqualsToLocation, andLocation;
   let result = { totalCount: 0, tweets: [] };
@@ -42,8 +44,29 @@ async function getTweets(req, resp) {
     counter += 1;
   } while (resultsExist !== undefined && counter < 3);
 
-  console.log(result);
-  return result;
+  event["id"] = req.body.id;
+  event["name"] = req.body.name;
+  event["hashtag"] = req.body.hashtag;
+  event["posts"] = result.tweets.length;
+  event["gallery"] = [];
+
+  for (tweet of result.tweets) {
+    users.push(tweet.user.id);
+    if (tweet.extended_entities !== undefined) {
+      const userGallery = {};
+      userGallery["media_url"] = tweet.extended_entities.media[0].media_url;
+      userGallery["screen_name"] = tweet.user.screen_name;
+      userGallery["url"] = tweet.extended_entities.media[0].url;
+      userGallery["created_at"] = tweet.created_at;
+      userGallery["profile_image_url"] = tweet.user.profile_image_url;
+      event["gallery"].push(userGallery);
+    }
+  }
+
+  const usersDistinct = [...new Set(users)];
+  event["users"] = usersDistinct.length;
+
+  resp.send(event);
 }
 
 exports.getTweets = getTweets;

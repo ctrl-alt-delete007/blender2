@@ -68,14 +68,14 @@ class App extends Component {
   };
 
   fetchSelectedEvent = eventInfo => {
-    //   const opts = {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(eventInfo)
-    //   };
-    //   fetch("/api/hashtag", opts)
-    //     .then(res => res.json())
-    //     .then(event => this.setState({ selectedEvent: event }));
+    const opts = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(eventInfo)
+    };
+    fetch("/api/hashtag", opts)
+      .then(res => res.json())
+      .then(event => this.setState({ selectedEvent: event }));
   };
 }
 
