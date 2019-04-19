@@ -62,6 +62,8 @@ class App extends Component {
     events.unshift(eventInfo);
     this.setState({ events, selectedEvent: eventInfo });
   };
+
+  fetchSelectedEvent = eventInfo => {};
 }
 
 export default withRouter(App);
