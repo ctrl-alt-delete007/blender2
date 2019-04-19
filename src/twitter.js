@@ -44,10 +44,11 @@ async function getTweets(req, resp) {
     counter += 1;
   } while (resultsExist !== undefined && counter < 3);
 
-  event["id"] = req.body.id;
-  event["name"] = req.body.name;
-  event["hashtag"] = req.body.hashtag;
-  event["posts"] = result.tweets.length;
+  event["event"] = {};
+  event["event"]["id"] = req.body.id;
+  event["event"]["name"] = req.body.name;
+  event["event"]["hashtag"] = req.body.hashtag;
+  event["event"]["posts"] = result.tweets.length;
   event["gallery"] = [];
 
   for (tweet of result.tweets) {
@@ -64,7 +65,7 @@ async function getTweets(req, resp) {
   }
 
   const usersDistinct = [...new Set(users)];
-  event["users"] = usersDistinct.length;
+  event["event"]["users"] = usersDistinct.length;
 
   resp.send(event);
 }

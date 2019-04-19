@@ -7,13 +7,15 @@ const GalleryHeader = props => {
     </option>
   ));
 
-  const { name, hashtag } = props.selectedEvent;
+  const { name, hashtag, posts, users } = props.selectedEvent;
 
   return (
     <React.Fragment>
       <div>
         <h1>{name}</h1>
         <h5>{hashtag}</h5>
+        <p>{posts} Posts</p>
+        <p>{users} Users</p>
       </div>
       <div>
         <select

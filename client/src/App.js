@@ -9,7 +9,7 @@ class App extends Component {
     super();
     this.state = {
       events: [],
-      selectedEvent: { name: "", hashtag: "" }
+      selectedEvent: { event: { name: "", hashtag: "" } }
     };
   }
 
@@ -22,12 +22,17 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectedEvent.name === "" && this.state.events.length > 0) {
-      this.setState({ selectedEvent: this.state.events[0] });
+    if (
+      prevState.selectedEvent.event.name === "" &&
+      this.state.events.length > 0
+    ) {
+      this.setState({ selectedEvent: { event: this.state.events[0] } });
     }
 
-    if (prevState.selectedEvent.id !== this.state.selectedEvent.id) {
-      this.fetchSelectedEvent(this.state.selectedEvent);
+    if (
+      prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
+    ) {
+      this.fetchSelectedEvent(this.state.selectedEvent.event);
     }
   }
 
@@ -57,14 +62,16 @@ class App extends Component {
   }
 
   selectedValueHandler = id => {
-    const selectedEvent = this.state.events.find(event => event.id === id);
+    const selectedEvent = {
+      event: this.state.events.find(event => event.id === id)
+    };
     this.setState({ selectedEvent });
   };
 
   addEventsHandler = eventInfo => {
     const { events } = this.state;
     events.unshift(eventInfo);
-    this.setState({ events, selectedEvent: eventInfo });
+    this.setState({ events, selectedEvent: { event: eventInfo } });
   };
 
   fetchSelectedEvent = eventInfo => {
