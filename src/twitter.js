@@ -27,13 +27,10 @@ async function getTweets(hashtag) {
       count: 100
     });
 
-    console.log(tweets.data.search_metadata);
-
     result.totalCount += tweets.data.statuses.length;
 
     result.tweets = [...tweets.data.statuses, ...result.tweets];
 
-    console.log("next results", tweets.data.search_metadata.next_results);
     if (tweets.data.search_metadata.next_results !== undefined) {
       resultsExist = tweets.data.search_metadata.next_results;
       isEqualsToLocation = resultsExist.indexOf("=");
