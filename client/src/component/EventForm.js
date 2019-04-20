@@ -1,5 +1,6 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { Container, Segment } from "semantic-ui-react";
 
 class EventForm extends Component {
   constructor(props) {
@@ -19,12 +20,18 @@ class EventForm extends Component {
   };
 
   async clickHandler() {
+    let { hashtag } = this.state;
+
+    if (hashtag[0] === "#") {
+      hashtag = hashtag.substring(1);
+    }
+
     const opts = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: this.state.name,
-        hashtag: this.state.hashtag
+        hashtag: hashtag
       })
     };
 
@@ -37,27 +44,41 @@ class EventForm extends Component {
 
   render() {
     return (
-      <Fragment>
-        <p>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.changeHandler}
-            id="name"
-          />
-        </p>
-        <p>
-          <input
-            type="text"
-            name="hashtag"
-            value={this.state.hashtag}
-            onChange={this.changeHandler}
-            id="hashtag"
-          />
-        </p>
-        <button onClick={this.clickHandler}>Submit</button>
-      </Fragment>
+      <div className="ui form">
+        <div className="fields">
+          <div id="event-form" className="field">
+            <p>
+              <input
+                style={{ border: "1px solid #6F767F" }}
+                type="text"
+                name="name"
+                value={this.state.name}
+                placeholder="Event Name"
+                onChange={this.changeHandler}
+                id="name"
+              />
+            </p>
+            <p>
+              <input
+                style={{ border: "1px solid #6F767F" }}
+                type="text"
+                name="hashtag"
+                placeholder="Hashtag"
+                value={this.state.hashtag}
+                onChange={this.changeHandler}
+                id="hashtag"
+              />
+            </p>
+            <button
+              id="btn-event"
+              className="fluid ui button"
+              onClick={this.clickHandler}
+            >
+              Start Event
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
