@@ -25,40 +25,42 @@ class GalleryHeader extends Component {
     };
 
     return (
-      <React.Fragment>
-        <div>
-          <h1>{name}</h1>
-          <h5>#{hashtag}</h5>
+      <div className="flex-container">
+        <div className="flex-item">
+          <h1 id="header-event-name">{name}</h1>
           <p>
-            {posts} Posts // {users} Users
+            <span id="header-hashtag">#{hashtag} </span>
+            <span id="header-postuser-container">
+              <span className="header-posts-users">{posts}</span> Posts //{" "}
+              <span className="header-posts-users">{users}</span> Users
+            </span>
           </p>
         </div>
-        <div>
-          <select
-            name="selectedEvent"
-            value={this.props.selectedEvent.id}
-            onChange={e => this.props.selectedValueHandler(e.target.value)}
-          >
-            {selectOptions}
-          </select>
-        </div>
-        <div>
+
+        <div className="flex-item">
+          <input
+            type="text"
+            name="q"
+            id="q"
+            value={this.state.q}
+            onChange={this.changeHandler}
+            placeholder="search user post"
+          />
+          <button onClick={() => this.props.searchHandler(this.state.q)}>
+            search
+          </button>
+
           <p>
-            <input
-              type="text"
-              name="q"
-              id="q"
-              value={this.state.q}
-              onChange={this.changeHandler}
-              placeholder="search user post"
-            />
-            <button onClick={() => this.props.searchHandler(this.state.q)}>
-              search
-            </button>
+            <select
+              name="selectedEvent"
+              value={this.props.selectedEvent.id}
+              onChange={e => this.props.selectedValueHandler(e.target.value)}
+            >
+              {selectOptions}
+            </select>
           </p>
         </div>
-        <div />
-      </React.Fragment>
+      </div>
     );
   }
 

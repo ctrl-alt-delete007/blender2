@@ -47,3 +47,39 @@
 .input-event {
   border: 2px solid #6f767f;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.flex-item:nth-child(1) {
+  order: 1;
+  flex: 1 0 auto;
+  align-self: center;
+  text-align: left;
+}
+
+.flex-item:nth-child(2) {
+  order: 2;
+  flex: 1 1 auto;
+  align-self: center;
+  text-align: right;
+}
+
+#header-event-name {
+  margin-bottom: 0px;
+}
+
+#header-hashtag {
+  font-weight: bold;
+}
+
+.header-posts-users {
+  font-weight: bold;
+}
+
+#header-postuser-container {
+  color: #626b74;
+}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Container, Segment } from "semantic-ui-react";
 
 class EventForm extends Component {
   constructor(props) {
