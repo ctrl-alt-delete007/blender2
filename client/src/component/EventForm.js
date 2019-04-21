@@ -6,10 +6,22 @@ class EventForm extends Component {
     super(props);
     this.state = {
       name: "",
-      hashtag: ""
+      hashtag: "",
+      error: false
     };
 
     this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.name.length > 0 &&
+      this.state.hashtag.length > 0 &&
+      this.state.error &&
+      this.state.error
+    ) {
+      this.setState({ error: false });
+    }
   }
 
   changeHandler = e => {
@@ -19,7 +31,19 @@ class EventForm extends Component {
   };
 
   async clickHandler() {
-    let { hashtag } = this.state;
+    let { name, hashtag } = this.state;
+
+    console.log(this.state);
+
+    if (name.length === 0) {
+      this.setState({ error: true });
+      return;
+    }
+
+    if (hashtag.length === 0) {
+      this.setState({ error: true });
+      return;
+    }
 
     if (hashtag[0] === "#") {
       hashtag = hashtag.substring(1);
@@ -46,9 +70,18 @@ class EventForm extends Component {
       <div>
         <div className="fields">
           <div id="event-form" className="field">
+            <span
+              style={{
+                color: "red",
+                display: this.state.error ? "inline" : "none",
+                margin: "0px 0px 0px 70px"
+              }}
+            >
+              Both fields are required!
+            </span>
             <p>
               <input
-                style={{ border: "1px solid #6F767F" }}
+                style={{ border: "1px solid #6F767F", borderRadius: "15px" }}
                 className="input-text-form"
                 type="text"
                 name="name"
@@ -60,7 +93,7 @@ class EventForm extends Component {
             </p>
             <p>
               <input
-                style={{ border: "1px solid #6F767F" }}
+                style={{ border: "1px solid #6F767F", borderRadius: "15px" }}
                 className="input-text-form"
                 type="text"
                 name="hashtag"

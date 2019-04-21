@@ -23,7 +23,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.selectedEvent.event.name === "" &&
+      prevState.selectedEvent.event.name === undefined &&
       this.state.events.length > 0
     ) {
       this.setState({ selectedEvent: { event: this.state.events[0] } });
