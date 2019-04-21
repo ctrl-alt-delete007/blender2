@@ -1,4 +1,6 @@
 import React from "react";
+import { Icon } from "semantic-ui-react";
+import twitter from "../twitter.png";
 
 const Card = props => {
   const oneDay = 24 * 60 * 60 * 1000;
@@ -23,17 +25,37 @@ const Card = props => {
       <div className="overlay ctr imghov">
         <span>
           <img
-            className="ui avatar image"
+            style={{ top: "7px", position: "absolute", left: "14px" }}
+            className="ui avatar image user"
             src={props.post.profile_image_url}
             alt={props.post.screen_name}
           />
           <span style={{ color: "white" }}>
-            {props.post.screen_name}
+            <span
+              style={{ top: "12px", position: "absolute", left: "47px" }}
+              className="card-screen-name"
+            >
+              {props.post.screen_name}
+            </span>
             <br />
-            {postedDaysAgo}
+            <span
+              style={{ position: "absolute", top: "25px", left: "45px" }}
+              className="card-days-ago"
+            >
+              {postedDaysAgo}
+            </span>
+            <img
+              style={{ position: "absolute", top: "10px", right: "10px" }}
+              src={twitter}
+              alt="twitter"
+            />
           </span>
         </span>
-        <button>Blue</button>
+        <a href={props.post.url} target="_blank">
+          <button className="btn-post btnhov">
+            <span className="btn-text">View Post</span>
+          </button>
+        </a>
       </div>
     </div>
   );
