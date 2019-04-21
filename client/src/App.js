@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import EventForm from "./component/EventForm";
 import Gallery from "./container/Gallery";
 import "./App.css";
+import { Segment, Responsive } from "semantic-ui-react";
 
 class App extends Component {
   constructor() {

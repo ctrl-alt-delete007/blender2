@@ -25,8 +25,8 @@ class GalleryHeader extends Component {
     };
 
     return (
-      <div className="flex-container">
-        <div className="flex-item">
+      <div>
+        <div>
           <h1 id="header-event-name">{name}</h1>
           <p>
             <span id="header-hashtag">#{hashtag} </span>
@@ -37,7 +37,7 @@ class GalleryHeader extends Component {
           </p>
         </div>
 
-        <div className="flex-item">
+        <div>
           <input
             type="text"
             name="q"
