@@ -36,11 +36,14 @@ body {
 
 #event-form {
   margin-top: 200px;
+  padding-left: 120px;
 }
 
 #btn-event {
   color: white;
   background: #606a74;
+  width: 300px;
+  height: 50px;
 }
 
 .input-event {
@@ -235,4 +238,10 @@ a:active {
   -webkit-align-self: flex-start;
   -ms-flex-item-align: start;
   align-self: flex-start;
+}
+
+.input-text-form {
+  border: 1px solid rgb(111, 118, 127);
+  height: 50px;
+  width: 300px;
 }

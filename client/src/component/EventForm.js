@@ -43,12 +43,13 @@ class EventForm extends Component {
 
   render() {
     return (
-      <div className="ui form">
+      <div>
         <div className="fields">
           <div id="event-form" className="field">
             <p>
               <input
                 style={{ border: "1px solid #6F767F" }}
+                className="input-text-form"
                 type="text"
                 name="name"
                 value={this.state.name}
@@ -60,6 +61,7 @@ class EventForm extends Component {
             <p>
               <input
                 style={{ border: "1px solid #6F767F" }}
+                className="input-text-form"
                 type="text"
                 name="hashtag"
                 placeholder="Hashtag"
@@ -70,7 +72,7 @@ class EventForm extends Component {
             </p>
             <button
               id="btn-event"
-              className="fluid ui button"
+              className="ui button"
               onClick={this.clickHandler}
             >
               Start Event
