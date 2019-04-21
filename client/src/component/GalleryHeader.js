@@ -28,37 +28,56 @@ class GalleryHeader extends Component {
       <div>
         <div>
           <h1 id="header-event-name">{name}</h1>
-          <p>
-            <span id="header-hashtag">#{hashtag} </span>
-            <span id="header-postuser-container">
-              <span className="header-posts-users">{posts}</span> Posts //{" "}
-              <span className="header-posts-users">{users}</span> Users
-            </span>
-          </p>
         </div>
 
-        <div>
-          <input
-            type="text"
-            name="q"
-            id="q"
-            value={this.state.q}
-            onChange={this.changeHandler}
-            placeholder="search user post"
-          />
-          <button onClick={() => this.props.searchHandler(this.state.q)}>
-            search
-          </button>
-
-          <p>
+        <div className="gallery-second-header">
+          <div
+            style={{ alignSelf: "flex-start" }}
+            className="gallery-second-header-child"
+          >
+            <p>
+              <span id="header-hashtag">#{hashtag} </span>
+              <span id="header-postuser-container">
+                <span className="header-posts-users">{posts}</span> Posts //{" "}
+                <span className="header-posts-users">{users}</span> Users
+              </span>
+            </p>
+          </div>
+          <div
+            style={{ marginTop: "-15px" }}
+            className="gallery-second-header-child"
+          >
+            <label
+              style={{ paddingRight: "10px", fontWeight: "bold" }}
+              htmlFor="selectedEvent"
+            >
+              Event Name
+            </label>
             <select
+              className="ui dropdown"
               name="selectedEvent"
               value={this.props.selectedEvent.id}
               onChange={e => this.props.selectedValueHandler(e.target.value)}
             >
               {selectOptions}
             </select>
-          </p>
+          </div>
+          <div
+            style={{ alignSelf: "flex-end", marginRight: "-120px" }}
+            className="gallery-second-header-child"
+          >
+            <input
+              type="text"
+              name="q"
+              id="q"
+              value={this.state.q}
+              onChange={this.changeHandler}
+              placeholder="search user post"
+            />
+            <button onClick={() => this.props.searchHandler(this.state.q)}>
+              search
+            </button>
+          </div>
         </div>
       </div>
     );

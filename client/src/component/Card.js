@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
 import twitter from "../twitter.png";
 
 const Card = props => {
@@ -51,7 +50,7 @@ const Card = props => {
             />
           </span>
         </span>
-        <a href={props.post.url} target="_blank">
+        <a href={props.post.url} target="_blank" rel="noopener noreferrer">
           <button className="btn-post btnhov">
             <span className="btn-text">View Post</span>
           </button>
