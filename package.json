@@ -4,8 +4,8 @@
   "description": "Live Twitter Hashtag Feed Gallery for an event",
   "main": "server.js",
   "scripts": {
-    "start": "node --inspect server.js",
-    "server": "nodemon server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
