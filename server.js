@@ -8,13 +8,10 @@ const port = process.env.port || 5000;
 
 app.use(express.json());
 
-app.get(`https://blenderapp.herokuapp.com:${port}/api/events`, db.getEvents);
+app.get("/api/events", db.getEvents);
 
-app.post(`https://blenderapp.herokuapp.com:${port}/api/events`, db.createEvent);
+app.post("/api/events", db.createEvent);
 
-app.post(
-  `https://blenderapp.herokuapp.com:${port}/api/hashtag`,
-  twitter.getTweets
-);
+app.post("/api/hashtag", twitter.getTweets);
 
 app.listen(port, () => console.log(`Server started on port: ${port}`));
