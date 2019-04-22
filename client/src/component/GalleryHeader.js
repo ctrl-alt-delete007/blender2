@@ -61,7 +61,7 @@ class GalleryHeader extends Component {
                 id="q"
                 value={this.state.q}
                 onChange={this.changeHandler}
-                placeholder="search user post"
+                placeholder="search for user"
               />
             </div>
             <div>
