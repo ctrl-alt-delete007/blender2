@@ -30,16 +30,17 @@ class GalleryHeader extends Component {
           <h1>{name}</h1>
         </div>
 
-        <div className="gallery-header-child">
+        <div id="gallery-header-child-regular" className="gallery-header-child">
           <div className="gallery-hc-node">
             <p>
-              <span>#{hashtag} </span>
-              <span>
-                <span>{posts}</span> Posts // <span>{users}</span> Users
+              <span id="header-hashtag">#{hashtag} </span>
+              <span id="header-postuser-container">
+                <span className="header-posts-users">{posts}</span> Posts //{" "}
+                <span className="header-posts-users">{users}</span> Users
               </span>
             </p>
           </div>
-          <div className="gallery-hc-node">
+          <div id="gallery-hc-node2" className="gallery-hc-node">
             <label id="select-event-dropdown-label" htmlFor="selectedEvent">
               Event Name
             </label>
@@ -52,22 +53,25 @@ class GalleryHeader extends Component {
               {selectOptions}
             </select>
           </div>
-          <div className="gallery-hc-node">
-            <input
-              type="text"
-              name="q"
-              id="q"
-              value={this.state.q}
-              onChange={this.changeHandler}
-              placeholder="search user post"
-            />{" "}
-            <br />
-            <button
-              className="compact ui black button"
-              onClick={() => this.props.searchHandler(this.state.q)}
-            >
-              search
-            </button>
+          <div id="gallery-hc-node3" className="gallery-hc-node">
+            <div>
+              <input
+                type="text"
+                name="q"
+                id="q"
+                value={this.state.q}
+                onChange={this.changeHandler}
+                placeholder="search user post"
+              />
+            </div>
+            <div>
+              <button
+                className="compact ui black button"
+                onClick={() => this.props.searchHandler(this.state.q)}
+              >
+                search
+              </button>
+            </div>
           </div>
         </div>
       </div>
