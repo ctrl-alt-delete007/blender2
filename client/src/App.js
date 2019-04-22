@@ -30,6 +30,7 @@ class App extends Component {
     // } else {
     //   this.fetchSelectedEvent(this.state.selectedEvent.event);
     // }
+    console.log(this.state.selectedEvent, prevState.selectedEvent);
     if (
       this.state.selectedEvent.event !== undefined &&
       prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
