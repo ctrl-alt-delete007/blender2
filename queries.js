@@ -7,7 +7,7 @@ const Pool = require("pg").Pool;
 
 const pool = new Pool({
   user: "postgres",
-  host: "134.209.79.135",
+  host: "localhost",
   database: "blenderdb",
   password: "",
   port: 5432
