@@ -34,7 +34,7 @@ class GalleryHeader extends Component {
 
     console.log(this.state.selectedEvent);
 
-    const { id, name, hashtag, posts, users } = this.state.selectedEvent;
+    const { id, name, hashtag, posts, users } = this.props.selectedEvent;
 
     return (
       <div id="gallery-header-container">
@@ -60,9 +60,7 @@ class GalleryHeader extends Component {
               id="select-event-dropdown"
               name="selectedEvent"
               value={id}
-              onChange={e =>
-                this.props.selectedValueHandler(parseInt(e.target.value))
-              }
+              onChange={e => this.selectHandler(parseInt(e.target.value))}
             >
               {selectOptions}
             </select>
@@ -94,6 +92,10 @@ class GalleryHeader extends Component {
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  selectHandler = id => {
+    this.props.selectedValueHandler(id);
   };
 }
 
