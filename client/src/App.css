@@ -400,7 +400,7 @@ a:active {
   padding-left: 5px;
 }
 
-#gallery-hc-node3 input[type="text"] {
+input[type="text"] {
   width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
