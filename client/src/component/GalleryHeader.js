@@ -40,18 +40,19 @@ class GalleryHeader extends Component {
               </span>
             </p>
           </div>
-          <div id="gallery-hc-node2" className="gallery-hc-node">
+          {/* <div id="gallery-hc-node2" className="gallery-hc-node">
             <label id="select-event-dropdown-label" htmlFor="selectedEvent">
               Event Name
             </label>
             <select
               id="select-event-dropdown"
               name="selectedEvent"
+              value={this.props.selectedEvent.id}
               onChange={e => this.props.selectedValueHandler(e.target.value)}
             >
               {selectOptions}
             </select>
-          </div>
+          </div> */}
           <div id="gallery-hc-node3" className="gallery-hc-node">
             <div>
               <input
