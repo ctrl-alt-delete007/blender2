@@ -25,6 +25,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "http://134.209.79.135:5000"
+  ]
 }
