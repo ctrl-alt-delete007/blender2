@@ -17,8 +17,7 @@ class GalleryHeader extends Component {
       </option>
     ));
 
-    const { id, name, hashtag, posts, users } = this.props.selectedEvent || {
-      id: 1,
+    const { name, hashtag, posts, users } = this.props.selectedEvent || {
       name: "",
       hashtag: "",
       posts: 0,
@@ -48,7 +47,7 @@ class GalleryHeader extends Component {
             <select
               id="select-event-dropdown"
               name="selectedEvent"
-              value={id}
+              value={this.props.selectedEvent.event.id}
               onChange={e => this.props.selectedValueHandler(e.target.value)}
             >
               {selectOptions}
