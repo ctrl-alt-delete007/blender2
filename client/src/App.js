@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/events")
+    fetch("https://blenderapp.herokuapp.com:5000/api/events")
       .then(res => res.json())
       .then(events => {
         this.setState({ events });

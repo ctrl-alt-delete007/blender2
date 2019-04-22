@@ -58,7 +58,7 @@ class EventForm extends Component {
       })
     };
 
-    await fetch("/api/events", opts)
+    await fetch("https://blenderapp.herokuapp.com:5000/api/events", opts)
       .then(res => res.json())
       .then(event => this.props.addEventsHandler(event));
 
