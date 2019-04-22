@@ -23,14 +23,14 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.selectedEvent.event.name === undefined &&
+      prevState.selectedEvent.event === undefined &&
       this.state.events.length > 0
     ) {
       this.setState({ selectedEvent: { event: this.state.events[0] } });
     }
 
     if (
-      prevState.selectedEvent.event.id === undefined ||
+      prevState.selectedEvent.event === undefined ||
       prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
     ) {
       this.fetchSelectedEvent(this.state.selectedEvent.event);
