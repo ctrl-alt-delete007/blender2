@@ -8,9 +8,9 @@ const port = 5000;
 
 app.use(express.json());
 
-app.get("http://blenderapp.herokuapp.com:5000/api/events", db.getEvents);
+app.get("https://blenderapp.herokuapp.com:5000/api/events", db.getEvents);
 
-app.post("http://blenderapp.herokuapp.com:5000/api/events", db.createEvent);
+app.post("https://blenderapp.herokuapp.com:5000/api/events", db.createEvent);
 
 // need to revise the below route to GET
 app.post("/api/hashtag", twitter.getTweets);
