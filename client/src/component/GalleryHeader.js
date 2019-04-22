@@ -34,21 +34,27 @@ class GalleryHeader extends Component {
 
     console.log(this.state.selectedEvent);
 
-    const { id, name, hashtag, posts, users } = this.props.selectedEvent.event;
-
     return (
       <div id="gallery-header-container">
         <div className="gallery-header-child">
-          <h1>{name}</h1>
+          <h1>{this.props.selectedEvent.name}</h1>
         </div>
 
         <div id="gallery-header-child-regular" className="gallery-header-child">
           <div className="gallery-hc-node">
             <p>
-              <span id="header-hashtag">#{hashtag} </span>
+              <span id="header-hashtag">
+                #{this.props.selectedEvent.event.hashtag}{" "}
+              </span>
               <span id="header-postuser-container">
-                <span className="header-posts-users">{posts}</span> Posts //{" "}
-                <span className="header-posts-users">{users}</span> Users
+                <span className="header-posts-users">
+                  {this.props.selectedEvent.event.posts}
+                </span>{" "}
+                Posts //{" "}
+                <span className="header-posts-users">
+                  {this.props.selectedEvent.event.users}
+                </span>{" "}
+                Users
               </span>
             </p>
           </div>
@@ -59,7 +65,7 @@ class GalleryHeader extends Component {
             <select
               id="select-event-dropdown"
               name="selectedEvent"
-              value={id}
+              value={this.props.selectedEvent.event.id}
               onChange={e => this.selectHandler(parseInt(e.target.value))}
             >
               {selectOptions}
