@@ -13,7 +13,7 @@ class GalleryHeader extends Component {
 
   componentDidMount() {
     if (
-      this.props.selectedEvent === undefined &&
+      this.props.selectedEvent.event === undefined &&
       this.props.events.length === 0
     ) {
       fetch("/api/events")
