@@ -37,7 +37,7 @@ class GalleryHeader extends Component {
     return (
       <div id="gallery-header-container">
         <div className="gallery-header-child">
-          <h1>{this.props.selectedEvent.name}</h1>
+          <h1>{this.props.selectedEvent.event.name}</h1>
         </div>
 
         <div id="gallery-header-child-regular" className="gallery-header-child">
