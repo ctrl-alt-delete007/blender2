@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://blenderapp.herokuapp.com:42946/api/events")
+    fetch("https://blenderapp.herokuapp.com:42946/api/events")
       .then(res => res.json())
       .then(events => {
         this.setState({ events });
@@ -80,7 +80,7 @@ class App extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(eventInfo)
     };
-    fetch("http://blenderapp.herokuapp.com:42946/api/hashtag", opts)
+    fetch("https://blenderapp.herokuapp.com:42946/api/hashtag", opts)
       .then(res => res.json())
       .then(event => this.setState({ selectedEvent: event }));
   };
