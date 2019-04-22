@@ -22,19 +22,13 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.events.length === 0) {
-      fetch("/api/events")
-        .then(res => res.json())
-        .then(events => this.setState({ events, selectedEvent: events[0] }));
+    if (
+      prevState.selectedEvent.event === undefined &&
+      this.state.events.length > 0
+    ) {
+      this.setState({ selectedEvent: { event: this.state.events[0] } });
     } else {
-      if (
-        prevState.selectedEvent.event === undefined &&
-        this.state.events.length > 0
-      ) {
-        this.setState({ selectedEvent: { event: this.state.events[0] } });
-      } else {
-        this.fetchSelectedEvent(this.state.selectedEvent.event);
-      }
+      this.fetchSelectedEvent(this.state.selectedEvent.event);
     }
   }
 
