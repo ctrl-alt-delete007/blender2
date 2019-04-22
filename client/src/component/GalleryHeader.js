@@ -18,7 +18,6 @@ class GalleryHeader extends Component {
     ));
 
     const { name, hashtag, posts, users } = this.props.selectedEvent || {
-      id: 1,
       name: "",
       hashtag: "",
       posts: 0,
