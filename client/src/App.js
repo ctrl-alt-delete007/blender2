@@ -33,8 +33,7 @@ class App extends Component {
     console.log(this.state.selectedEvent, prevState.selectedEvent);
     if (
       this.state.selectedEvent.event !== undefined &&
-      prevState.selectedEvent.event.id !==
-        this.state.selectedEvent.event.event.id
+      prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
     ) {
       this.fetchSelectedEvent(this.state.selectedEvent.event);
     }
@@ -66,16 +65,14 @@ class App extends Component {
   }
 
   selectedValueHandler = id => {
-    const selectedEvent = {
-      event: this.state.events.find(event => event.id === id)
-    };
-    this.setState({ selectedEvent });
+    const event = this.state.events.find(event => event.id === id);
+    this.setState({ selectedEvent: event });
   };
 
-  addEventsHandler = eventInfo => {
+  addEventsHandler = event => {
     const { events } = this.state;
-    events.unshift(eventInfo);
-    this.setState({ events, selectedEvent: { event: eventInfo } });
+    events.unshift(event);
+    this.setState({ events, selectedEvent: event });
   };
 
   fetchSelectedEvent = eventInfo => {
