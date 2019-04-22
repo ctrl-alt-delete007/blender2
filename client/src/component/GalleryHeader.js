@@ -10,6 +10,7 @@ class GalleryHeader extends Component {
   }
 
   render() {
+    console.log(this.props.selectedEvent);
     const events = this.props.events || [{ name: "" }];
     const selectOptions = events.map((event, i) => (
       <option key={i} value={event.id}>
