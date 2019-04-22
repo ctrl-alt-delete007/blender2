@@ -17,6 +17,7 @@ class Gallery extends Component {
   };
 
   render() {
+    console.log(this.props.selectedEvent);
     const gallery = this.props.selectedEvent.gallery || [];
     const filteredGallery = gallery.filter(tweet =>
       tweet.screen_name.toLowerCase().includes(this.state.q.toLowerCase())
