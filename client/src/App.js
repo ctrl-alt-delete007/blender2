@@ -22,12 +22,18 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // if (
+    //   prevState.selectedEvent.event === undefined &&
+    //   this.state.events.length > 0
+    // ) {
+    //   this.setState({ selectedEvent: { event: this.state.events[0] } });
+    // } else {
+    //   this.fetchSelectedEvent(this.state.selectedEvent.event);
+    // }
     if (
-      prevState.selectedEvent.event === undefined &&
-      this.state.events.length > 0
+      this.state.selectedEvent.event !== undefined &&
+      prevState.selectedEvent.event.id !== this.state.selectedEvent.id
     ) {
-      this.setState({ selectedEvent: { event: this.state.events[0] } });
-    } else {
       this.fetchSelectedEvent(this.state.selectedEvent.event);
     }
   }
