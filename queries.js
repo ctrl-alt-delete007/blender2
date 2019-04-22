@@ -9,7 +9,7 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "blenderdb",
-  password: "",
+  password: "postgres",
   port: 5432
 });
 
