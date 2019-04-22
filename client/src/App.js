@@ -31,10 +31,12 @@ class App extends Component {
     //   this.fetchSelectedEvent(this.state.selectedEvent.event);
     // }
     console.log(this.state.selectedEvent, prevState.selectedEvent);
-    if (
-      prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
-    ) {
-      this.fetchSelectedEvent(this.state.selectedEvent.event);
+    if (prevState.selected.event !== undefined) {
+      if (
+        prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
+      ) {
+        this.fetchSelectedEvent(this.state.selectedEvent.event);
+      }
     }
   }
 
