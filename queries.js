@@ -9,8 +9,9 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "blenderdb",
-  password: "postgres",
-  port: 5432
+  password: "password",
+  port: 5432,
+  sslmode: "disable"
 });
 
 const getEvents = (request, response) => {
