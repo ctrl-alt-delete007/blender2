@@ -1,10 +1,8 @@
-const Pool = require("pg").Pool;
+require("dotenv").config();
 
+const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "carlofernando",
-  host: "localhost",
-  database: "blenderdb",
-  port: 5432
+  connectionString: process.env.DATABASE_URL
 });
 
 const getEvents = (request, response) => {
