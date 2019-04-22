@@ -29,6 +29,8 @@ class App extends Component {
       this.setState({ selectedEvent: { event: this.state.events[0] } });
     }
 
+    console.log(prevState.selectedEvent, this.state.selectedEvent.event.id);
+
     if (
       prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
     ) {
