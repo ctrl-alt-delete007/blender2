@@ -34,7 +34,7 @@ class GalleryHeader extends Component {
 
     console.log(this.state.selectedEvent);
 
-    const { id, name, hashtag, posts, users } = this.props.selectedEvent;
+    const { id, name, hashtag, posts, users } = this.props.selectedEvent.event;
 
     return (
       <div id="gallery-header-container">
