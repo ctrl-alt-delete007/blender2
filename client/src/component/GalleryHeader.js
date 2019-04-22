@@ -5,25 +5,36 @@ class GalleryHeader extends Component {
     super(props);
 
     this.state = {
-      q: ""
+      q: "",
+      events: this.props.events || [],
+      selectedEvent: this.props.selectedEvent || {}
     };
   }
 
+  componentDidMount() {
+    if (
+      this.props.selectedEvent.event === undefined &&
+      this.props.events.length === 0
+    ) {
+      fetch("/api/events")
+        .then(res => res.json())
+        .then(events => {
+          this.setState({ events, selectedEvent: events[0] });
+        });
+    }
+  }
+
   render() {
-    console.log(this.props.selectedEvent, this.props.events);
-    const events = this.props.events || [{ name: "" }];
+    const events = this.state.events;
     const selectOptions = events.map((event, i) => (
       <option key={i} value={event.id}>
         {event.name}
       </option>
     ));
 
-    const { name, hashtag, posts, users } = this.props.selectedEvent || {
-      name: "",
-      hashtag: "",
-      posts: 0,
-      users: 0
-    };
+    console.log(this.state.selectedEvent);
+
+    const { id, name, hashtag, posts, users } = this.state.selectedEvent.event;
 
     return (
       <div id="gallery-header-container">
@@ -48,7 +59,7 @@ class GalleryHeader extends Component {
             <select
               id="select-event-dropdown"
               name="selectedEvent"
-              value={this.props.selectedEvent.event.id}
+              value={id}
               onChange={e => this.props.selectedValueHandler(e.target.value)}
             >
               {selectOptions}
