@@ -8,7 +8,7 @@ const port = process.env.port || 5000;
 
 app.use(express.json());
 
-app.get(`https://blenderapp.herokuapp.com:${prot}/api/events`, db.getEvents);
+app.get(`https://blenderapp.herokuapp.com:${port}/api/events`, db.getEvents);
 
 app.post(`https://blenderapp.herokuapp.com:${port}/api/events`, db.createEvent);
 
