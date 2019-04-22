@@ -65,7 +65,10 @@ class App extends Component {
   }
 
   selectedValueHandler = id => {
-    const event = this.state.events.find(event => event.id === id);
+    const event = this.state.events.find(event => {
+      console.log(event);
+      return event.id === id;
+    });
     console.log(event);
     this.setState({ selectedEvent: event });
   };
