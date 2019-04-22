@@ -33,8 +33,6 @@ class EventForm extends Component {
   async clickHandler() {
     let { name, hashtag } = this.state;
 
-    console.log(this.state);
-
     if (name.length === 0) {
       this.setState({ error: true });
       return;
