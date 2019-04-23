@@ -5,23 +5,8 @@ class GalleryHeader extends Component {
     super(props);
 
     this.state = {
-      q: "",
-      events: this.props.events || [],
-      selectedEvent: this.props.selectedEvent || {}
+      q: ""
     };
-  }
-
-  componentDidMount() {
-    if (
-      this.props.selectedEvent.event === undefined &&
-      this.props.events.length === 0
-    ) {
-      fetch("/api/events")
-        .then(res => res.json())
-        .then(events => {
-          this.setState({ events, selectedEvent: events[0] });
-        });
-    }
   }
 
   render() {
@@ -32,27 +17,25 @@ class GalleryHeader extends Component {
       </option>
     ));
 
-    console.log(this.state.selectedEvent);
-
     return (
       <div id="gallery-header-container">
         <div className="gallery-header-child">
-          <h1>{this.state.selectedEvent.name}</h1>
+          <h1>{this.props.selectedEvent.name}</h1>
         </div>
 
         <div id="gallery-header-child-regular" className="gallery-header-child">
           <div className="gallery-hc-node">
             <p>
               <span id="header-hashtag">
-                #{this.state.selectedEvent.hashtag}{" "}
+                #{this.props.selectedEvent.hashtag}{" "}
               </span>
               <span id="header-postuser-container">
                 <span className="header-posts-users">
-                  {this.state.selectedEvent.posts}
+                  {this.props.selectedEvent.posts}
                 </span>{" "}
                 Posts //{" "}
                 <span className="header-posts-users">
-                  {this.state.selectedEvent.users}
+                  {this.props.selectedEvent.users}
                 </span>{" "}
                 Users
               </span>
@@ -66,7 +49,9 @@ class GalleryHeader extends Component {
               id="select-event-dropdown"
               name="selectedEvent"
               value={this.props.selectedEvent.id}
-              onChange={e => this.selectHandler(parseInt(e.target.value))}
+              onChange={e =>
+                this.props.selectedValueHandler(parseInt(e.target.value))
+              }
             >
               {selectOptions}
             </select>
@@ -98,10 +83,6 @@ class GalleryHeader extends Component {
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
-  };
-
-  selectHandler = id => {
-    this.props.selectedValueHandler(id);
   };
 }
 
