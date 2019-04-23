@@ -49,7 +49,7 @@ class App extends Component {
             path="/gallery"
             render={() => (
               <Gallery
-                selectedEvent={this.state.selectedEvent}
+                selectedEvent={this.state.selectedEvent.event}
                 events={this.state.events}
                 selectedValueHandler={this.selectedValueHandler}
               />

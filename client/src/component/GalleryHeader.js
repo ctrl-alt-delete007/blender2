@@ -25,7 +25,7 @@ class GalleryHeader extends Component {
   }
 
   render() {
-    const events = this.state.events;
+    const events = this.props.events;
     const selectOptions = events.map((event, i) => (
       <option key={i} value={event.id}>
         {event.name}
@@ -37,22 +37,22 @@ class GalleryHeader extends Component {
     return (
       <div id="gallery-header-container">
         <div className="gallery-header-child">
-          <h1>{this.props.selectedEvent.event.name}</h1>
+          <h1>{this.state.selectedEvent.name}</h1>
         </div>
 
         <div id="gallery-header-child-regular" className="gallery-header-child">
           <div className="gallery-hc-node">
             <p>
               <span id="header-hashtag">
-                #{this.props.selectedEvent.event.hashtag}{" "}
+                #{this.state.selectedEvent.hashtag}{" "}
               </span>
               <span id="header-postuser-container">
                 <span className="header-posts-users">
-                  {this.props.selectedEvent.event.posts}
+                  {this.state.selectedEvent.posts}
                 </span>{" "}
                 Posts //{" "}
                 <span className="header-posts-users">
-                  {this.props.selectedEvent.event.users}
+                  {this.state.selectedEvent.users}
                 </span>{" "}
                 Users
               </span>
