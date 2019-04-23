@@ -49,7 +49,7 @@ class App extends Component {
             path="/gallery"
             render={() => (
               <Gallery
-                selectedEvent={this.state.selectedEvent.event}
+                selectedEvent={this.state.selectedEvent}
                 events={this.state.events}
                 selectedValueHandler={this.selectedValueHandler}
               />
@@ -85,7 +85,7 @@ class App extends Component {
     };
     fetch("/api/hashtag", opts)
       .then(res => res.json())
-      .then(event => this.setState({ selectedEvent: event }));
+      .then(event => this.setState({ selectedEvent: { event } }));
   };
 }
 
