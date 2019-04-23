@@ -68,13 +68,13 @@ class App extends Component {
 
   selectedValueHandler = id => {
     const event = this.state.events.find(event => event.id === id);
-    this.setState({ selectedEvent: event });
+    this.setState({ selectedEvent: { event } });
   };
 
   addEventsHandler = event => {
     const { events } = this.state;
     events.unshift(event);
-    this.setState({ events, selectedEvent: event });
+    this.setState({ events, selectedEvent: { event } });
   };
 
   fetchSelectedEvent = eventInfo => {
