@@ -41,6 +41,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.selectedEvent);
     return (
       <div className="App">
         <Switch>
