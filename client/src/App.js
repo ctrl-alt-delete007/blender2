@@ -9,7 +9,8 @@ class App extends Component {
     super();
     this.state = {
       events: [],
-      selectedEvent: {}
+      selectedEvent: {},
+      loaded: false
     };
   }
 
@@ -41,6 +42,18 @@ class App extends Component {
   }
 
   render() {
+    if (!this.state.loaded && this.state.events.length < 1) {
+      fetch("/api/events")
+        .then(res => res.json())
+        .then(events => {
+          this.setState({
+            events,
+            loaded: true,
+            selectedEvent: { event: events[0] }
+          });
+        });
+    }
+
     console.log(this.state.selectedEvent);
     return (
       <div className="App">
