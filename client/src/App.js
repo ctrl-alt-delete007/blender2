@@ -43,6 +43,7 @@ class App extends Component {
 
   render() {
     if (!this.state.loaded && this.state.events.length < 1) {
+      console.log(this.state.selectedEvent);
       fetch("/api/events")
         .then(res => res.json())
         .then(events => {
@@ -54,7 +55,6 @@ class App extends Component {
         });
     }
 
-    console.log(this.state.selectedEvent);
     return (
       <div className="App">
         <Switch>
