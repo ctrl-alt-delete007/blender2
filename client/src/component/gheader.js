@@ -3,11 +3,10 @@ import GalleryHeader from "../component/GalleryHeader";
 import Cards from "./Cards";
 
 const Gallery = props => {
-  console.log(props.filteredGallery);
   return (
     <React.Fragment>
       <GalleryHeader
-        selectedEvent={props.selectedEvent}
+        selectedEvent={props.selectedEvent.event || {}}
         events={props.events}
         searchHandler={props.searchHandler}
         selectedValueHandler={props.selectedValueHandler}

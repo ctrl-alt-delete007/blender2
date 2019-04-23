@@ -10,15 +10,23 @@ class App extends Component {
     this.state = {
       events: [],
       selectedEvent: {},
+      filteredGallery: [],
       loaded: false
     };
   }
 
   componentDidMount() {
+    console.log("CDM");
     fetch("/api/events")
       .then(res => res.json())
       .then(events => {
-        this.setState({ events, selectedEvent: { event: events[0] } });
+        this.setState(
+          {
+            events,
+            selectedEvent: { event: events[0] }
+          },
+          this.fetchSelectedEvent(events[0])
+        );
       });
   }
 
@@ -36,23 +44,34 @@ class App extends Component {
       if (
         prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
       ) {
-        this.fetchSelectedEvent(this.state.selectedEvent.event);
+        console.log(this.state.selectedEvent);
+        // this.fetchSelectedEvent(this.state.selectedEvent.event);
       }
     }
   }
 
   render() {
+    console.log(
+      "app render",
+      this.state.loaded,
+      this.state.events,
+      this.state.selectedEvent
+    );
     if (!this.state.loaded && this.state.events.length < 1) {
-      console.log(this.state.selectedEvent);
+      console.log(this.state.selectedEvent, this.state.events[0]);
       fetch("/api/events")
         .then(res => res.json())
         .then(events => {
-          this.setState({
-            events,
-            loaded: true,
-            selectedEvent: { event: events[0] }
-          });
+          this.setState(
+            {
+              events,
+              loaded: true,
+              selectedEvent: { event: events[0] }
+            },
+            this.fetchSelectedEvent(events[0])
+          );
         });
+      return null;
     }
 
     return (
@@ -62,16 +81,24 @@ class App extends Component {
             path="/gallery"
             render={() => (
               <Gallery
-                selectedEvent={this.state.selectedEvent}
+                selectedEvent={this.state.selectedEvent.event}
                 events={this.state.events}
+                q={this.state.q}
+                searchHandler={this.searchHandler}
+                changeHandler={this.changeHandler}
+                filteredGallery={this.state.filteredGallery}
                 selectedValueHandler={this.selectedValueHandler}
+                fetchSelectedEvent={this.fetchSelectedEvent}
               />
             )}
           />
           <Route
             path="/"
             render={() => (
-              <EventForm addEventsHandler={this.addEventsHandler} />
+              <EventForm
+                addEventsHandler={this.addEventsHandler}
+                fetchSelectedEvent={this.fetchSelectedEvent}
+              />
             )}
           />
         </Switch>
@@ -80,8 +107,9 @@ class App extends Component {
   }
 
   selectedValueHandler = id => {
-    const event = this.state.events.find(event => event.id === id);
-    this.setState({ selectedEvent: { event } });
+    const event = this.state.events.find(event => parseInt(event.id) === id);
+    console.log(event);
+    this.setState({ selectedEvent: { event } }, this.fetchSelectedEvent(event));
   };
 
   addEventsHandler = event => {
@@ -91,6 +119,7 @@ class App extends Component {
   };
 
   fetchSelectedEvent = eventInfo => {
+    console.log(eventInfo);
     const opts = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -99,8 +128,30 @@ class App extends Component {
     fetch("/api/hashtag", opts)
       .then(res => res.json())
       .then(event =>
-        this.setState({ selectedEvent: { event } }, console.log(event))
+        this.setState(
+          {
+            selectedEvent: { event: { ...eventInfo, ...event } },
+            filteredGallery: event.gallery
+          },
+          console.log(event)
+        )
       );
+  };
+
+  changeHandler = q => {
+    this.setState({
+      q
+    });
+  };
+
+  searchHandler = () => {
+    const filteredGallery = this.state.selectedEvent.gallery.filter(tweet =>
+      tweet.screen_name.toLowerCase().includes(this.state.q.toLowerCase())
+    );
+
+    console.log(filteredGallery, this.state.selectedEvent.gallery);
+
+    this.setState({ filteredGallery });
   };
 }
 

@@ -58,7 +58,10 @@ class EventForm extends Component {
 
     await fetch("/api/events", opts)
       .then(res => res.json())
-      .then(event => this.props.addEventsHandler(event));
+      .then(event => {
+        this.props.addEventsHandler(event);
+        this.props.fetchSelectedEvent(event);
+      });
 
     this.props.history.push("/gallery");
   }
