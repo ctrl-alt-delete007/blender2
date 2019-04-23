@@ -85,7 +85,9 @@ class App extends Component {
     };
     fetch("/api/hashtag", opts)
       .then(res => res.json())
-      .then(event => this.setState({ selectedEvent: { event } }));
+      .then(event =>
+        this.setState({ selectedEvent: { event } }, console.log(event))
+      );
   };
 }
 
