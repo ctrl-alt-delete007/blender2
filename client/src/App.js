@@ -53,7 +53,6 @@ class App extends Component {
             selectedEvent: { event: events[0] }
           });
         });
-      return;
     }
 
     return (
