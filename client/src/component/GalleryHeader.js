@@ -8,8 +8,6 @@ const GalleryHeader = props => {
     </option>
   ));
 
-  console.log(props, props.selectedEvent, Object.keys(props.selectedEvent));
-
   let name, hashtag, posts, users, id;
 
   if (Object.keys(props.selectedEvent).length > 3) {

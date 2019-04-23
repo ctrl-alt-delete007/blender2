@@ -11,12 +11,12 @@ class App extends Component {
       events: [],
       selectedEvent: {},
       filteredGallery: [],
-      loaded: false
+      loaded: false,
+      q: ""
     };
   }
 
   componentDidMount() {
-    console.log("CDM");
     fetch("/api/events")
       .then(res => res.json())
       .then(events => {
@@ -30,35 +30,8 @@ class App extends Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // if (
-    //   prevState.selectedEvent.event === undefined &&
-    //   this.state.events.length > 0
-    // ) {
-    //   this.setState({ selectedEvent: { event: this.state.events[0] } });
-    // } else {
-    //   this.fetchSelectedEvent(this.state.selectedEvent.event);
-    // }
-    console.log(this.state.selectedEvent, prevState.selectedEvent);
-    if (prevState.selectedEvent.event !== undefined) {
-      if (
-        prevState.selectedEvent.event.id !== this.state.selectedEvent.event.id
-      ) {
-        console.log(this.state.selectedEvent);
-        // this.fetchSelectedEvent(this.state.selectedEvent.event);
-      }
-    }
-  }
-
   render() {
-    console.log(
-      "app render",
-      this.state.loaded,
-      this.state.events,
-      this.state.selectedEvent
-    );
     if (!this.state.loaded && this.state.events.length < 1) {
-      console.log(this.state.selectedEvent, this.state.events[0]);
       fetch("/api/events")
         .then(res => res.json())
         .then(events => {
@@ -108,7 +81,6 @@ class App extends Component {
 
   selectedValueHandler = id => {
     const event = this.state.events.find(event => parseInt(event.id) === id);
-    console.log(event);
     this.setState({ selectedEvent: { event } }, this.fetchSelectedEvent(event));
   };
 
@@ -119,7 +91,6 @@ class App extends Component {
   };
 
   fetchSelectedEvent = eventInfo => {
-    console.log(eventInfo);
     const opts = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -128,13 +99,10 @@ class App extends Component {
     fetch("/api/hashtag", opts)
       .then(res => res.json())
       .then(event =>
-        this.setState(
-          {
-            selectedEvent: { event: { ...eventInfo, ...event } },
-            filteredGallery: event.gallery
-          },
-          console.log(event)
-        )
+        this.setState({
+          selectedEvent: { event: { ...eventInfo, ...event } },
+          filteredGallery: event.gallery
+        })
       );
   };
 
@@ -145,11 +113,10 @@ class App extends Component {
   };
 
   searchHandler = () => {
-    const filteredGallery = this.state.selectedEvent.gallery.filter(tweet =>
-      tweet.screen_name.toLowerCase().includes(this.state.q.toLowerCase())
+    const filteredGallery = this.state.selectedEvent.event.gallery.filter(
+      tweet =>
+        tweet.screen_name.toLowerCase().includes(this.state.q.toLowerCase())
     );
-
-    console.log(filteredGallery, this.state.selectedEvent.gallery);
 
     this.setState({ filteredGallery });
   };

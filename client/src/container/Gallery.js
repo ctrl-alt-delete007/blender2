@@ -3,7 +3,6 @@ import GalleryHeader from "../component/GalleryHeader";
 import Cards from "./Cards";
 
 const Gallery = props => {
-  console.log(props.filteredGallery);
   return (
     <React.Fragment>
       <GalleryHeader
