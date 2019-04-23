@@ -17,7 +17,7 @@ class App extends Component {
     fetch("/api/events")
       .then(res => res.json())
       .then(events => {
-        this.setState({ events, selectedEvent: events[0] });
+        this.setState({ events, selectedEvent: { event: events[0] } });
       });
   }
 
